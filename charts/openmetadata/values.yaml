@@ -79,3 +79,9 @@ persistence:
   accessModes:
     - ReadWriteOnce
   storageClass: managed-csi
+
+serviceMonitor:
+  enabled: false
+  interval: 30s
+  annotations: {}
+  labels: {}
