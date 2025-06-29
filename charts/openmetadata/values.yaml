@@ -19,6 +19,11 @@ openmetadata:
       enabled: true
       provider: "basic"
 
+    fernetkey:
+      value: ""
+      secretRef: ""
+      secretKey: ""
+
     database:
       host: mysql.daap-dev.svc.cluster.local
       port: 3306
