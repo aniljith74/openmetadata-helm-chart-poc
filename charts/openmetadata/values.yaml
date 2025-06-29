@@ -15,6 +15,10 @@ openmetadata:
       adminPort: 8586
       uri: "http://openmetadata:8585"
 
+    authentication:
+      enabled: true
+      provider: "basic"
+
     database:
       host: mysql.daap-dev.svc.cluster.local
       port: 3306
