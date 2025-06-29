@@ -85,3 +85,8 @@ serviceMonitor:
   interval: 30s
   annotations: {}
   labels: {}
+
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
