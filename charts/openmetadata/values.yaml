@@ -29,24 +29,6 @@ openmetadata:
           secretKey: openmetadata-mysql-password
       dbParams: "allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC"
 
-    pipelineServiceClientConfig:
-      enabled: false
-      verifySsl: "no-ssl"
-      hostIp: ""
-      ingestionIpInfoEnabled: false
-      healthCheckInterval: 300
-      sslCertificatePath: "/no/path"
-      auth:
-        enabled: true
-        username: admin
-        password:
-          secretRef: airflow-secrets
-          secretKey: openmetadata-airflow-password
-        trustStorePath: ""
-        trustStorePassword:
-          secretRef: ""
-          secretKey: ""
-
     elasticsearch:
       enabled: true
       searchType: opensearch
