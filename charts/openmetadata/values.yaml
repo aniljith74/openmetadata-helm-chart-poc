@@ -30,10 +30,7 @@ openmetadata:
       dbParams: "allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC"
 
     pipelineServiceClientConfig:
-      enabled: true
-      className: "org.openmetadata.service.clients.pipeline.airflow.AirflowRESTClient"
-      apiEndpoint: http://48.211.143.59:8080
-      metadataApiEndpoint: http://openmetadata:8585/api
+      enabled: false
       verifySsl: "no-ssl"
       hostIp: ""
       ingestionIpInfoEnabled: false
