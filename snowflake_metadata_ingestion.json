@@ -1,0 +1,28 @@
+{
+  "source": {
+    "type": "snowflake",
+    "serviceName": "daap",
+    "sourceConfig": {
+      "config": {
+        "type": "DatabaseMetadata"
+      }
+    }
+  },
+  "sink": {
+    "type": "metadata-rest",
+    "config": {
+      "apiEndpoint": "http://128.85.217.88:8585/api"
+    }
+  },
+"workflowConfig": {
+  "openMetadataServerConfig": {
+    "hostPort": "http://128.85.217.88:8585",
+    "authProvider": "basic",
+    "securityConfig": {
+      "username": "admin@open-metadata.org",
+      "password": "admin"
+
+    }
+        }
+    }
+}
