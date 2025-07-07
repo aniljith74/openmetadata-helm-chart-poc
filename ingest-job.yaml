@@ -36,12 +36,10 @@ spec:
                       "securityConfig": {
                         "username": "admin@open-metadata.org",
                         "password": "admin"
-                  
                       }
-                          }
-                      }
-                  }' 
-            /ingest.json &&
+                    }
+                  }
+                }' > /ingest.json &&
             metadata ingest -c /ingest.json
         volumeMounts:
         - name: config-volume
