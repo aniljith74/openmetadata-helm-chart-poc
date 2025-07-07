@@ -85,8 +85,8 @@ jobs:
         helm repo add open-metadata https://helm.open-metadata.org 
         helm repo update
         helm upgrade --install openmetadata open-metadata/openmetadata --namespace daap-dev -f $(pwd)/charts/openmetadata/values.yaml
-        kubectl apply -f $(pwd)/ingest-config.yaml -n daap-dev
-        kubectl apply -f $(pwd)/ingest-job.yaml -n daap-dev
+        kubectl apply -f ingest-config.yaml -n daap-dev
+        kubectl apply -f ingest-job.yaml -n daap-dev
 
 
         #kubectl apply -f $(pwd)/charts/openmetadata/airflow.yaml -n daap-dev
