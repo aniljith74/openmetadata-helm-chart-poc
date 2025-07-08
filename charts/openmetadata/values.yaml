@@ -1,5 +1,5 @@
 image:
-  repository: openmetadata/server
+  repository: openmetadata/ingestion
   tag: 1.7.1
   pullPolicy: IfNotPresent
 
