@@ -12,7 +12,7 @@ spec:
           command: ["sh", "-c"]
           args:
             - |
-              pip install openmetadata-ingestion==1.7.1 &&
+              pip install "openmetadata-ingestion[pii]==1.7.1 &&
               echo '{
                 "source": {
                   "type": "snowflake",
