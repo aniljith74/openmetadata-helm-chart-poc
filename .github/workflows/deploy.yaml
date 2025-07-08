@@ -9,6 +9,7 @@ on:
       - ".github/workflows/deploy.yaml"
       - "DockerDockerfile-openmetadata"
       - "Dockerfile-airflow"
+      - "ingest-job.yaml"
 
 jobs:
   deploy:
