@@ -27,7 +27,7 @@ spec:
                 "sink": {
                   "type": "metadata-rest",
                   "config": {
-                    "apiEndpoint": "http://128.85.217.88:8585/api"
+                    "apiEndpoint": "http://128.85.217.88:8585"
                   }
                 },
                 "workflowConfig": {
