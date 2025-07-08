@@ -13,6 +13,7 @@ spec:
           args:
             - |
               pip install openmetadata-ingestion==1.7.1 && pip install presidio-analyzer &&
+              pip install google-cloud-bigquery==3.14.1 && 
               echo '{
                 "source": {
                   "type": "snowflake",
