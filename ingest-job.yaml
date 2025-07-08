@@ -7,47 +7,39 @@ spec:
   template:
     spec:
       containers:
-      - name: ingestion
-        image: python:3.10
-        command: ["sh", "-c"]
-        args:
-          - |
-            pip install openmetadata-ingestion==1.7.1 &&
-            echo '{
-                    "source": {
-                      "type": "snowflake",
-                      "serviceName": "daap",
-                      "sourceConfig": {
-                        "config": {
-                          "type": "DatabaseMetadata"
-                        }
-                      }
-                    },
-                    "sink": {
-                      "type": "metadata-rest",
-                      "config": {
-                        "apiEndpoint": "http://128.85.217.88:8585/api"
-                      }
-                    },
-                  "workflowConfig": {
-                    "openMetadataServerConfig": {
-                      "hostPort": "http://128.85.217.88:8585",
-                      "authProvider": "basic",
-                      "securityConfig": {
-                        "username": "admin@open-metadata.org",
-                        "password": "admin"
-                      }
+        - name: ingestion
+          image: python:3.10
+          command: ["sh", "-c"]
+          args:
+            - |
+              pip install openmetadata-ingestion==1.7.1 &&
+              echo '{
+                "source": {
+                  "type": "snowflake",
+                  "serviceName": "daap",
+                  "sourceConfig": {
+                    "config": {
+                      "type": "DatabaseMetadata"
                     }
                   }
-                }' > /ingest.json &&
-            metadata ingest -c /ingest.json
-        volumeMounts:
-        - name: config-volume
-          mountPath: /ingest.json
-          subPath: ingest.json
+                },
+                "sink": {
+                  "type": "metadata-rest",
+                  "config": {
+                    "apiEndpoint": "http://128.85.217.88:8585/api"
+                  }
+                },
+                "workflowConfig": {
+                  "openMetadataServerConfig": {
+                    "hostPort": "http://128.85.217.88:8585",
+                    "authProvider": "basic",
+                    "securityConfig": {
+                      "username": "admin@open-metadata.org",
+                      "password": "admin"
+                    }
+                  }
+                }
+              }' > /tmp/ingest.json &&
+              metadata ingest -c /tmp/ingest.json
       restartPolicy: Never
-      volumes:
-      - name: config-volume
-        configMap:
-          name: ingest-config
   backoffLimit: 1
