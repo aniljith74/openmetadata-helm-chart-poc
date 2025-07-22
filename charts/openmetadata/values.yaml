@@ -15,6 +15,10 @@ openmetadata:
       adminPort: 8586
       uri: "http://openmetadata:8585"
 
+    airflow:
+      enabled: true
+      host: "http://airflow-service.daap-dev.svc.cluster.local:8080"
+
     database:
       host: mysql.daap-dev.svc.cluster.local
       port: 3306
