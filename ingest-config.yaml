@@ -28,9 +28,7 @@ data:
       },
       "sink": {
         "type": "metadata-rest",
-        "config": {
-          "apiEndpoint": "http://20.41.40.141:8585/api"
-        }
+        "config": {}
       },
       "workflowConfig": {
         "openMetadataServerConfig": {
