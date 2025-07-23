@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: ingest-config
+  name: openmetadata-snowflake-ingest-config
   namespace: daap-dev
 data:
   ingest.json: |
@@ -9,6 +9,17 @@ data:
       "source": {
         "type": "snowflake",
         "serviceName": "daap",
+        "serviceConnection": {
+          "config": {
+            "type": "Snowflake",
+            "username": "Aniljith.Sathyanathan@tsworks.io",
+            "password": "SecurePass1234",
+            "account": "A6050728655071-TSWORKZ_PARTNER.snowflakecomputing.com",
+            "database": "RETAIL_RAW",
+            "warehouse": "OPENAI_WAREHOUSE",
+            "role": "DAAP_DEVELOPER_ROLE"
+          }
+        },
         "sourceConfig": {
           "config": {
             "type": "DatabaseMetadata"
@@ -27,6 +38,7 @@ data:
           "authProvider": "openmetadata",
           "securityConfig": {
             "jwtToken": "eyJraWQiOiJHYjM4OWEtOWY3Ni1nZGpzLWE5MmotMDI0MmJrOTQzNTYiLCJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJvcGVuLW1ldGFkYXRhLm9yZyIsInN1YiI6ImFkbWluIiwicm9sZXMiOlsiQWRtaW4iXSwiZW1haWwiOiJhZG1pbkBvcGVuLW1ldGFkYXRhLm9yZyIsImlzQm90IjpmYWxzZSwidG9rZW5UeXBlIjoiUEVSU09OQUxfQUNDRVNTIiwiaWF0IjoxNzUxOTYzODEyLCJleHAiOjE3NTk3Mzk4MTJ9.j3iOgacmqbeddHPBw4M4ycgAqGSZoffRa1QLO9cLOU3FeLf3FBXBkzO9DhVQ2aOw569tHJ2kUOnTfGXU9MtLAGG0aQ99RBN9HALhsbCAG-PkZd-jIF7et4U3GOEjr5MJjDvNtQkPeZ_s1E_brctjiHXlX0NsoI4C_WFErn3iQ4dXRLFLNo3_VHqx3WrfVZm6-rU0RLRZwFuVmgotvF2fxw7b1VyuG6KyX8MJAufrMW3RWRYsnJQGKdU4KTku_AuPAiJBC29mRb54CDpx9jXXQkzQMdX7TVqPwWWrv5fI0jERmMB7CmujP3ygzL_dz1dVOPoDySDEedHrWUhoU4Vw7g"
+
           }
         }
       }
