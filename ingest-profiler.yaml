@@ -24,7 +24,7 @@ data:
           "config": {
             "type": "Profiler",
             "profileSample": 100,
-            "timeoutSeconds": 60,
+            "timeoutSeconds": 60
           }
         }
       },
