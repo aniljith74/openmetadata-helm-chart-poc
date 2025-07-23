@@ -1,20 +1,23 @@
 apiVersion: batch/v1
-kind: Job
+kind: CronJob
 metadata:
   name: openmetadata-snowflake-ingest
   namespace: daap-dev
 spec:
-  template:
+  schedule: "*/15 * * * * "
+  jobTemplate:
     spec:
-      containers:
-        - name: metadata
-          image: openmetadata/ingestion:1.7.1
-          command: ["metadata", "ingest", "-c", "/config/ingest.json"]
-          volumeMounts:
+      template:
+        spec:
+          containers:
+            - name: metadata
+              image: openmetadata/ingestion:1.7.1
+              command: ["metadata", "ingest", "-c", "/config/ingest.json"]
+              volumeMounts:
+                - name: ingest-config
+                  mountPath: /config
+          restartPolicy: Never
+          volumes:
             - name: ingest-config
-              mountPath: /config
-      restartPolicy: Never
-      volumes:
-        - name: ingest-config
-          configMap:
-            name: openmetadata-snowflake-ingest-config
+              configMap:
+                name: openmetadata-snowflake-ingest-config

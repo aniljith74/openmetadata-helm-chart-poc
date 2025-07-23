@@ -4,7 +4,7 @@ metadata:
   name: openmetadata-snowflake-profiler
   namespace: daap-dev
 spec:
-  schedule: "5 * * * *"  
+  schedule: "5-59/15 * * * *"  
   jobTemplate:
     spec:
       template:

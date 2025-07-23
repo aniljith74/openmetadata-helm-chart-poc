@@ -4,14 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "charts/openmetadata/**"
-      - ".github/workflows/deploy.yaml"
-      - "DockerDockerfile-openmetadata"
-      - "Dockerfile-airflow"
-      - "ingest-job.yaml"
-      - "ingest-config.yaml"
-
+      
 jobs:
   deploy:
     runs-on: ubuntu-latest
