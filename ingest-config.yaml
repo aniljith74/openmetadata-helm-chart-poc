@@ -28,7 +28,7 @@ data:
       },
       "sink": {
         "type": "metadata-rest",
-        "config": {}
+        "config":  {}
       },
       "workflowConfig": {
         "openMetadataServerConfig": {

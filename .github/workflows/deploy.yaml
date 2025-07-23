@@ -10,6 +10,7 @@ on:
       - "DockerDockerfile-openmetadata"
       - "Dockerfile-airflow"
       - "ingest-job.yaml"
+      - "ingest-config.yaml"
 
 jobs:
   deploy:
