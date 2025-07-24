@@ -39,10 +39,8 @@ jobs:
 
     - name: Build and push docker
       run:  |
-        #docker build -t daappoc25.azurecr.io/openmetadata:custom -f Dockerfile-openmetadata .
-        #docker push daappoc25.azurecr.io/openmetadata:custom
-        #docker build -t daappoc25.azurecr.io/airflow:ver-1 -f Dockerfile-airflow .
-        #docker push daappoc25.azurecr.io/airflow:ver-1    
+        docker build -t daappoc25.azurecr.io/openmetadata:custom -f Dockerfile-openmetadata .
+        docker push daappoc25.azurecr.io/openmetadata:custom 
       
 
     - name: Create Namespace /optional
@@ -62,12 +60,12 @@ jobs:
         helm upgrade --install opensearch opensearch/opensearch --namespace daap-dev  -f $(pwd)/charts/openmetadata/values-opensearch.yaml
         kubectl apply -f $(pwd)/charts/openmetadata/opensearch-sysctl-daemonset.yaml -n daap-dev
 
-    - name: Deploy OpenMetadata (with Airflow)
+    - name: Deploy OpenMetadata 
       run: |
         helm repo add open-metadata https://helm.open-metadata.org 
         helm repo update
         helm upgrade --install openmetadata open-metadata/openmetadata --namespace daap-dev -f $(pwd)/charts/openmetadata/values.yaml
         #kubectl apply -f ingest-config.yaml -n daap-dev
         #kubectl apply -f ingest-job.yaml -n daap-dev
-        kubectl apply -f ingest-profiler-job.yaml -n daap-dev
-        kubectl apply -f ingest-profiler.yaml -n daap-dev
+        #kubectl apply -f ingest-profiler-job.yaml -n daap-dev
+        #kubectl apply -f ingest-profiler.yaml -n daap-dev
