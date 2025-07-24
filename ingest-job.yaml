@@ -11,7 +11,7 @@ spec:
         spec:
           containers:
             - name: metadata
-              image: openmetadata/ingestion:1.7.2
+              image: daappoc25.azurecr.io/openmetadata:custom
               command: ["metadata", "ingest", "-c", "/config/ingest.json"]
               volumeMounts:
                 - name: ingest-config
