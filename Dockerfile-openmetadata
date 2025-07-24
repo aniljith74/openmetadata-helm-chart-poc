@@ -2,7 +2,14 @@ FROM openmetadata/server:1.7.2
 
 USER root
 
+
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip && \
+    ln -s /usr/bin/python3 /usr/bin/python && \
+    pip3 install --upgrade pip
+
+
 RUN pip install --no-cache-dir \
-    openmetadata-ingestion==1.7.2.0
+    openmetadata-ingestion==1.7.2.0 
 
 USER om
