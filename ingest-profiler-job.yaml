@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
         - name: metadata
-          image: openmetadata/ingestion:1.7.1.0
+          image: openmetadata/ingestion:1.7.2
           command: ["metadata", "ingest", "-c", "/config/profiler.json"]
           volumeMounts:
             - name: profiler-config
