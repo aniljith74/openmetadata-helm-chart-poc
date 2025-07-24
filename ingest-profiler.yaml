@@ -24,15 +24,14 @@ data:
           "config": {
             "type": "Profiler",
             "profileSample": 100,
-            "timeoutSeconds": 60
+            "timeoutSeconds": 60,
+            "incremental": true
           }
         }
       },
       "processor": {
         "type": "orm-profiler",
-        "config": {
-          "incremental": true
-        }
+        "config": {}
       },
       "stage": {
         "type": "table-profiler",

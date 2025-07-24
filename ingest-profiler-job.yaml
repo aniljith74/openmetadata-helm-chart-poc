@@ -1,23 +1,20 @@
 apiVersion: batch/v1
-kind: CronJob
+kind: Job
 metadata:
   name: openmetadata-snowflake-profiler
   namespace: daap-dev
 spec:
-  schedule: "5-59/15 * * * *"  
-  jobTemplate:
+  template:
     spec:
-      template:
-        spec:
-          containers:
-            - name: metadata
-              image: openmetadata/ingestion:1.7.1
-              command: ["metadata", "ingest", "-c", "/config/profiler.json"]
-              volumeMounts:
-                - name: profiler-config
-                  mountPath: /config
-          restartPolicy: Never
-          volumes:
+      containers:
+        - name: metadata
+          image: openmetadata/ingestion:1.7.1
+          command: ["metadata", "ingest", "-c", "/config/profiler.json"]
+          volumeMounts:
             - name: profiler-config
-              configMap:
-                name: openmetadata-snowflake-profiler-config
+              mountPath: /config
+      restartPolicy: Never
+      volumes:
+        - name: profiler-config
+          configMap:
+            name: openmetadata-snowflake-profiler-config
