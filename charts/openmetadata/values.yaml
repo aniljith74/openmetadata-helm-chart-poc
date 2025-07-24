@@ -1,6 +1,6 @@
 image:
-  repository: openmetadata/server
-  tag: 1.7.1
+  repository: daappoc25.azurecr.io/openmetadata
+  tag: custom
   pullPolicy: IfNotPresent
 
 service:

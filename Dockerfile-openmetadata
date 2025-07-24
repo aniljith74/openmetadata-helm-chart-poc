@@ -1,8 +1,1 @@
 FROM openmetadata/server:1.7.2
-
-
-USER root
-COPY custom-bootstrap/bootstrap_storage.sh /bootstrap/bootstrap_storage.sh
-RUN chmod +x /bootstrap/bootstrap_storage.sh
-
-USER 1000
