@@ -29,13 +29,13 @@ data:
       "processor": {
         "type": "orm-profiler",
           "config": {
-            "profileSample": null,
+            "profileSample": 1.0,
             "profileQuery": true,
             "generateSampleData": true,
             "includeColumns": ["*"],
             "timeoutSeconds": 60,
             "failOnTimeout": false
-          }
+            }
       },
       "stage": {
         "type": "table-profiler",
