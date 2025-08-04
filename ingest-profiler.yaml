@@ -28,9 +28,9 @@ data:
       },
       "processor": {
         "type": "orm-profiler",
-          "config": {
-            "generateSampleData": true
-            }
+        "config": {
+          "generateSampleData": true
+        }
       },
       "stage": {
         "type": "table-profiler",
@@ -50,3 +50,4 @@ data:
         }
       }
     }
+
