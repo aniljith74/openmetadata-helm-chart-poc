@@ -20,7 +20,7 @@ data:
             connectionArguments: {}
         sourceConfig:
           config:
-            type: Profiler
+            type: DatabaseProfiler
             profileSample: 100
       sink:
         type: metadata-rest
