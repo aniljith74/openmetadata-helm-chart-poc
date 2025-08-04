@@ -22,7 +22,9 @@ data:
         },
         "sourceConfig": {
           "config": {
-            "type": "Profiler"
+            "type": "Profiler",
+            "profileSample": 100,
+            "profileQuery": true
           }
         }
       },
