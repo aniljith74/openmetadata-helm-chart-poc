@@ -22,7 +22,6 @@ data:
           config:
             type: Profiler
             profileSample: 100
-            generateSampleData: true
       sink:
         type: metadata-rest
         config: {}
