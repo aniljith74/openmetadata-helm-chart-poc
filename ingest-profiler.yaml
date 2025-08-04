@@ -29,12 +29,7 @@ data:
       "processor": {
         "type": "orm-profiler",
           "config": {
-            "profileSample": 1.0,
-            "profileQuery": true,
-            "generateSampleData": true,
-            "includeColumns": ["*"],
-            "timeoutSeconds": 60,
-            "failOnTimeout": false
+            "generateSampleData": true
             }
       },
       "stage": {
