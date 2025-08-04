@@ -15,14 +15,14 @@ data:
             password: "SecurePass1234"
             database: "RETAIL_RAW"
             warehouse: "OPENAI_WAREHOUSE"
-            account: "A6050728655071-TSWORKZ_PARTNER.snowflakecomputing.com",
+            account: "A6050728655071-TSWORKZ_PARTNER.snowflakecomputing.com"
             role: "DAAP_DEVELOPER_ROLE"
             connectionArguments: {}
-          sourceConfig:
-            config:
-              type: Profiler
-              profileSample: 100
-              generateSampleData: true
+        sourceConfig:
+          config:
+            type: Profiler
+            profileSample: 100
+            generateSampleData: true
       sink:
         type: metadata-rest
         config: {}
