@@ -9,7 +9,9 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
+  {{- if not .Values.hpa.enabled }}
   replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "OpenMetadata.selectorLabels" . | nindent 6 }}
@@ -30,15 +32,19 @@ spec:
       {{- if not (.Values.automountServiceAccountToken) }}
       automountServiceAccountToken: {{ .Values.automountServiceAccountToken }}
       {{- end }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       initContainers:
       {{- with .Values.preMigrateInitContainers }}
         {{- toYaml . | nindent 6 }}
       {{- end }}
       - name: run-db-migrations
+        {{- with .Values.securityContext }}
         securityContext:
-          {{- toYaml .Values.securityContext | nindent 10 }}
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{ include "OpenMetadata.buildUpgradeCommand" .  | nindent 8 }}
@@ -46,8 +52,10 @@ spec:
           {{- with .Values.extraVolumeMounts }}
             {{- toYaml . | nindent 10 }}
           {{- end }}
+        {{- with .Values.resources }}
         resources:
-          {{- toYaml .Values.resources | nindent 10 }}
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         envFrom:
           - secretRef:
               name: {{ include "OpenMetadata.fullname" . }}-config-secret
@@ -85,10 +93,6 @@ spec:
           - secretRef:
               name: {{ include "OpenMetadata.fullname" . }}-pipeline-secret
           {{- end }}
-          {{- if .Values.openmetadata.config.smtpConfig.enableSmtpServer }}
-          - secretRef:
-              name: {{ include "OpenMetadata.fullname" . }}-smtp-secret
-          {{- end }}
           {{- if .Values.openmetadata.config.jwtTokenConfiguration.enabled }}
           - secretRef:
               name: {{ include "OpenMetadata.fullname" . }}-jwt-secret
@@ -98,6 +102,10 @@ spec:
           - secretRef:
               name: {{ include "OpenMetadata.fullname" $ }}-fernetkey-secret
           {{- end }}
+          {{- end }}
+          {{- if .Values.openmetadata.config.rdf.enabled }}
+          - secretRef:
+              name: {{ include "OpenMetadata.fullname" . }}-rdf-secret
           {{- end }}
           {{- with .Values.envFrom }}
             {{- toYaml . | nindent 10 }}
@@ -114,8 +122,10 @@ spec:
       {{- include "tplvalues.render" (dict "value" .Values.extraVolumes "context" $) | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
@@ -177,10 +187,6 @@ spec:
             - secretRef:
                 name: {{ include "OpenMetadata.fullname" . }}-pipeline-secret
             {{- end }}
-            {{- if .Values.openmetadata.config.smtpConfig.enableSmtpServer }}
-            - secretRef:
-                name: {{ include "OpenMetadata.fullname" . }}-smtp-secret
-            {{- end }}
             {{- if .Values.openmetadata.config.jwtTokenConfiguration.enabled }}
             - secretRef:
                 name: {{ include "OpenMetadata.fullname" . }}-jwt-secret
@@ -194,8 +200,10 @@ spec:
             {{- with .Values.envFrom }}
               {{- toYaml . | nindent 12 }}
             {{- end }}
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
         {{- if .Values.sidecars }}
           {{- include "tplvalues.render" (dict "value" .Values.sidecars "context" $) | nindent 8 }}
         {{- end }}

@@ -344,13 +344,15 @@ OpenMetadata Configurations Environment Variables*/}}
 {{ include "OpenMetadata.configs.secretManager.gcp.additionalParameters" . }}
 {{- end }}
 {{- end }}
-{{- if and ( .Values.openmetadata.config.smtpConfig.enableSmtpServer ) ( .Values.openmetadata.config.smtpConfig.password.secretRef )}}
-{{- with .Values.openmetadata.config.smtpConfig.password }}
-- name: SMTP_SERVER_PWD
+{{- if .Values.openmetadata.config.rdf.enabled }}
+{{- if .Values.openmetadata.config.rdf.password.secretRef }}
+{{- with .Values.openmetadata.config.rdf.password }}
+- name: RDF_REMOTE_PASSWORD
   valueFrom:
-    secretKeyRef:
+    secretKeyRef: 
       name: {{ .secretRef }}
       key: {{ .secretKey }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
